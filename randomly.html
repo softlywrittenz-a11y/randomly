@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randomly 🌈✨</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* Background Soft Cream / Neutral Warm Pastel */
+            background: linear-gradient(135deg, #f7f3ee 0%, #ede6dd 50%, #f5efe6 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #334155;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Elements / Pelangi & Sparkles Melayang */
+        .sky-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 16px;
+            pointer-events: none;
+            animation: floatIcon 7s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes floatIcon {
+            0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.85; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Kartu Utama Minimalis & Aesthetic */
+        .container {
+            width: 100%;
+            max-width: 380px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 25px 22px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        p.subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        /* Box Topik Random */
+        .random-box {
+            background-color: #faf8f5;
+            border: 1.5px dashed #cbd5e1;
+            border-radius: 20px;
+            padding: 18px 15px;
+            margin-bottom: 15px;
+            min-height: 95px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .question-text {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #334155;
+            line-height: 1.5;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-shuffle {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 14px;
+            margin-top: 10px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            transition: transform 0.15s, background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-shuffle:active {
+            transform: scale(0.95);
+        }
+
+        .btn-shuffle:hover {
+            background-color: #f8fafc;
+        }
+
+        /* Textarea / Input */
+        textarea {
+            width: 100%;
+            height: 95px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 12px;
+            font-size: 13px;
+            font-family: inherit;
+            resize: none;
+            outline: none;
+            transition: border-color 0.2s;
+            margin-bottom: 15px;
+            background-color: #faf8f5;
+            color: #1e293b;
+        }
+
+        textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        textarea:focus {
+            border-color: #94a3b8;
+            background-color: #ffffff;
+        }
+
+        /* Tombol Kirim / Lanjut */
+        .btn-send {
+            width: 100%;
+            background-color: #1e293b;
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.2s;
+        }
+
+        .btn-send:active {
+            transform: scale(0.98);
+        }
+
+        .btn-send:hover {
+            background-color: #334155;
+        }
+
+        /* Screen Sukses & Quotes Panjang */
+        .success-card {
+            display: none;
+            padding: 10px 5px;
+        }
+
+        .success-card div.icon {
+            font-size: 45px;
+            margin-bottom: 8px;
+        }
+
+        .success-card h2 {
+            font-size: 19px;
+            color: #1e293b;
+            margin-bottom: 6px;
+        }
+
+        .quote-box {
+            background: #faf8f5;
+            border: 1px dashed #cbd5e1;
+            border-radius: 20px;
+            padding: 18px 16px;
+            margin: 16px 0 20px 0;
+            text-align: left;
+            color: #475569;
+            font-size: 12.5px;
+            line-height: 1.65;
+        }
+
+        .quote-title {
+            font-weight: 700;
+            font-size: 11px;
+            color: #334155;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animasi Rainbow & Sparkles Latar Belakang -->
+    <div class="sky-container" id="skyContainer"></div>
+
+    <!-- Tampilan Utama (3 Pertanyaan Beruntun) -->
+    <div class="container" id="mainCard">
+        <span class="badge" id="stepBadge">PERTANYAAN 1 DARI 3 🌈</span>
+        <h1>Ask or Tell Me Anything!</h1>
+        <p class="subtitle">Jawab 3 pertanyaan acak di bawah ini yaa, atau cerita bebas secara anonim ✨</p>
+
+        <!-- Box Generator Topik -->
+        <div class="random-box">
+            <div class="question-text" id="topicText">"Lagi kepikiran hal apa hari ini?"</div>
+            <button class="btn-shuffle" onclick="shuffleTopic()">🎲 Ganti Topik Lain</button>
+        </div>
+
+        <textarea id="userAnswer" placeholder="Ketik jawaban / cerita kamu di sini..."></textarea>
+        
+        <button class="btn-send" id="btnNext" onclick="handleNextStep()">Lanjut ke Pertanyaan 2 ➔</button>
+    </div>
+
+    <!-- Tampilan Akhir (Sukses + Quotes Panjang) -->
+    <div class="container success-card" id="successCard">
+        <div class="icon">🌈✨</div>
+        <h2>Pesan Terkirim!</h2>
+        <p style="font-size: 12px; color: #64748b;">Makasih banyak udah menyempatkan waktu ngisi 3 pertanyaan tadi yaa.</p>
+
+        <!-- Box Quotes Penyemangat Panjang -->
+        <div class="quote-box">
+            <span class="quote-title">✨ A Little Reminder For You ✨</span>
+            <span id="quoteText">...</span>
+        </div>
+
+        <button class="btn-send" onclick="resetCard()">Isi Lagi Dari Awal ➔</button>
+    </div>
+
+    <script>
+        // Koleksi Topik Random
+        const topics = [
+            "Lagi kepikiran hal apa hari/malam ini?",
+            "First impression kamu ke aku dulu gimana sih?",
+            "1 lagu yang lagi sering kamu putar belakangan ini?",
+            "Kalau bisa teleportasi sekarang, mau pergi ke mana?",
+            "Hal kecil apa yang paling bikin kamu bahagia minggu ini?",
+            "Kasih rekomendasi film/series yang bagus dong!",
+            "Spill tempat nongkrong/ngopi favorit kamu!",
+            "Ada cerita seru atau hal aneh yang pengen kamu bagi?",
+            "Satu kata yang paling menggambarkan perasaan kamu hari ini?",
+            "Pernah gak sih ngerasa kangen sama momen atau masa lalu?"
+        ];
+
+        // Quotes Penyemangat Versi Panjang & Deep
+        const longQuotes = [
+            "Terima kasih sudah bertahan sejauh ini yaa. Di tengah padatnya hari dan tumpukan hal yang bikin pusing, kamu selalu berhasil melewatinya dengan sangat baik. Jangan terlalu keras sama diri sendiri, luapkan lelahmu secukupnya, dan ingat kalau kamu pantas dapat banyak hal manis di dunia ini. Have a super cozy rest! 🕊️✨",
+            
+            "Pelan-pelan aja yaa, nggak semua hal di dunia ini harus diselesaikan hari ini juga. Kamu sudah berusaha luar biasa hebat. Kalau merasa capek, berhenti sebentar buat narik napas, minum air hangat, atau dengerin lagu favoritmu. Semesta punya cara indahnya sendiri buat menuntun kamu. Warm hugs for you! 🤍🌈",
+            
+            "Ingat yaa, progres kecil itu tetaplah sebuah pencapaian yang patut diarsip. Nggak apa-apa kalau hari ini terasa berjalan lambat atau nggak sesuai rencana. Yang terpenting kamu tidak menyerah. Bangga banget sama kamu yang selalu berusaha memberikan yang terbaik. Semoga besok ada kejutan kecil yang bikin kamu tersenyum lebar! ☕✨",
+            
+            "Jangan pernah ragu sama kemampuan dan potensi yang ada di dalam diri kamu. Kadang kita suka lupa betapa tangguhnya diri kita sendiri menghadapi hari-hari yang sulit kemarin. Kamu berharga, kamu cukup, dan kamu sedang berjalan menuju versi terbaikmu. Selalu jaga kesehatan dan semangat terus yaa! 🌿🕊️"
+        ];
+
+        let currentStep = 1;
+        let collectedAnswers = [];
+
+        function shuffleTopic() {
+            const topicText = document.getElementById('topicText');
+            topicText.style.opacity = '0';
+            
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * topics.length);
+                topicText.innerText = `"${topics[randomIndex]}"`;
+                topicText.style.opacity = '1';
+            }, 150);
+        }
+
+        function handleNextStep() {
+            const text = document.getElementById('userAnswer').value.trim();
+            if (text === "") {
+                alert(`Isi jawaban kamu untuk Pertanyaan ${currentStep} dulu yaa!`);
+                return;
+            }
+
+            collectedAnswers.push(text);
+            document.getElementById('userAnswer').value = '';
+
+            if (currentStep < 3) {
+                currentStep++;
+                document.getElementById('stepBadge').innerText = `PERTANYAAN ${currentStep} DARI 3 🌈`;
+                
+                if (currentStep === 3) {
+                    document.getElementById('btnNext').innerText = "Kirim Semua Pesan 🚀";
+                } else {
+                    document.getElementById('btnNext').innerText = `Lanjut ke Pertanyaan ${currentStep + 1} ➔`;
+                }
+
+                shuffleTopic();
+            } else {
+                showSuccessScreen();
+            }
+        }
+
+        function showSuccessScreen() {
+            const randomQuote = longQuotes[Math.floor(Math.random() * longQuotes.length)];
+            document.getElementById('quoteText').innerText = randomQuote;
+
+            document.getElementById('mainCard').style.display = 'none';
+            document.getElementById('successCard').style.display = 'block';
+        }
+
+        function resetCard() {
+            currentStep = 1;
+            collectedAnswers = [];
+            document.getElementById('userAnswer').value = '';
+            document.getElementById('stepBadge').innerText = "PERTANYAAN 1 DARI 3 🌈";
+            document.getElementById('btnNext').innerText = "Lanjut ke Pertanyaan 2 ➔";
+            
+            document.getElementById('successCard').style.display = 'none';
+            document.getElementById('mainCard').style.display = 'block';
+            shuffleTopic();
+        }
+
+        // Generate Pelangi, Awan & Sparkles Melayang
+        const skyContainer = document.getElementById('skyContainer');
+        const icons = ['🌈', '✨', '☁️', '🤍', '⭐'];
+        
+        for (let i = 0; i < 20; i++) {
+            const el = document.createElement('div');
+            el.classList.add('floating-icon');
+            el.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            el.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            el.style.animationDelay = Math.random() * 5 + 's';
+            skyContainer.appendChild(el);
+        }
+
+        shuffleTopic();
+    </script>
+</body>
+</html>
